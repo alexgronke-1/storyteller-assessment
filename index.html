@@ -216,7 +216,32 @@
       background: rgba(255,255,255,0.1);
       border-color: #DFFF00;
     }
-    
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 8px 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .back-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
     .form-title {
       font-size: 32px;
       font-weight: 900;
@@ -354,6 +379,12 @@
       </div>
 
       <div class="screen" id="questions">
+        <button class="back-btn" id="backBtn" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back
+        </button>
         <div class="question-stage" id="qStage"></div>
         <div class="question-title" id="qTitle"></div>
         <div class="question-text" id="qText"></div>
@@ -361,10 +392,16 @@
       </div>
 
       <div class="screen" id="leadForm">
+        <button class="back-btn" id="formBackBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back
+        </button>
         <form action="https://formspree.io/f/xaqdyyqw" method="POST" id="captureForm">
           <input type="hidden" name="result" id="hiddenResult" />
           <input type="hidden" name="answers" id="hiddenAnswers" />
-          
+
           <h2 class="form-title">Get Your Results</h2>
           <p class="form-subtitle">
             We'll send you a detailed breakdown of your organizational type plus guidance on what to do next.
@@ -521,8 +558,20 @@
     function updateProgress() {
       const percent = ((currentQ + 1) / QUESTIONS.length) * 100;
       document.getElementById('progressFill').style.width = percent + '%';
-      document.getElementById('progressText').textContent = 
+      document.getElementById('progressText').textContent =
         `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+
+      // Show/hide back button
+      const backBtn = document.getElementById('backBtn');
+      backBtn.style.display = currentQ > 0 ? 'flex' : 'none';
+    }
+
+    function goBack() {
+      if (currentQ > 0) {
+        answers.pop();
+        currentQ--;
+        displayQuestion();
+      }
     }
 
     function selectAnswer(score) {
@@ -568,6 +617,15 @@
     document.getElementById('startBtn').addEventListener('click', () => {
       showScreen('questions');
       document.getElementById('progress').classList.add('show');
+      displayQuestion();
+    });
+
+    document.getElementById('backBtn').addEventListener('click', goBack);
+
+    document.getElementById('formBackBtn').addEventListener('click', () => {
+      answers.pop();
+      currentQ = QUESTIONS.length - 1;
+      showScreen('questions');
       displayQuestion();
     });
 
