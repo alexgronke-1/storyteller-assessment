@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Should You Take This Storyteller Job? | Pretzl</title>
+  <meta name="description" content="6 moments from your first 90 days that reveal whether this org is actually ready for a Chief Storyteller">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1a1a1a;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .color-bar {
+      display: flex;
+      height: 4px;
+    }
+    
+    .color-segment {
+      flex: 1;
+    }
+    
+    .logo-container {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo-orb {
+      width: 32px;
+      height: 32px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: #1a1a1a;
+    }
+    
+    .logo-text {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    
+    .progress-container {
+      padding: 0 20px 8px;
+      display: none;
+    }
+    
+    .progress-container.show {
+      display: block;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FF3D3D, #DFFF00, #5533FF);
+      transition: width 0.4s ease;
+      width: 0;
+    }
+    
+    .progress-text {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+    }
+    
+    .screen {
+      display: none;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    .screen.show {
+      display: block;
+    }
+    
+    .intro {
+      text-align: center;
+    }
+    
+    .intro-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #DFFF00;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .intro-title {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    
+    .highlight {
+      background: #DFFF00;
+      color: #1a1a1a;
+      padding: 0 8px;
+      display: inline-block;
+      line-height: 1.3;
+    }
+    
+    .intro-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+    
+    .btn {
+      background: #DFFF00;
+      color: #1a1a1a;
+      border: none;
+      padding: 18px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.1s;
+    }
+    
+    .btn:active {
+      transform: scale(0.98);
+    }
+    
+    .btn-full {
+      width: 100%;
+      max-width: 320px;
+    }
+    
+    .question-stage {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #DFFF00;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    
+    .question-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    
+    .question-text {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+    
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .option-btn {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: #ffffff;
+      padding: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      border-radius: 8px;
+      cursor: pointer;
+      line-height: 1.5;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    
+    .option-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    
+    .option-btn:active {
+      transform: scale(0.98);
+      background: rgba(255,255,255,0.1);
+      border-color: #DFFF00;
+    }
+    
+    .form-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    
+    .form-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #DFFF00;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: #ffffff;
+      padding: 16px;
+      font-size: 16px;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #5533FF;
+      background: rgba(255,255,255,0.08);
+    }
+    
+    .results {
+      text-align: center;
+    }
+    
+    .result-title {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    
+    .result-subtitle {
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+      margin-bottom: 32px;
+    }
+    
+    .result-description {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+    }
+    
+    .result-diagnosis {
+      font-size: 14px;
+      font-weight: 700;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      border-left: 4px solid;
+    }
+
+    @media (min-width: 768px) {
+      .intro-title {
+        font-size: 56px;
+      }
+      
+      .question-text {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Netlify form detection - hidden -->
+  <form name="storyteller-assessment" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="company" />
+    <input type="text" name="result" />
+    <input type="text" name="answers" />
+  </form>
+
+  <div class="container">
+    <div class="color-bar">
+      <div class="color-segment" style="background: #FF3D3D;"></div>
+      <div class="color-segment" style="background: #DFFF00;"></div>
+      <div class="color-segment" style="background: #5533FF;"></div>
+    </div>
+
+    <div class="logo-container">
+      <div class="logo-orb">@</div>
+      <div class="logo-text">PRETZL</div>
+    </div>
+
+    <div class="progress-container" id="progress">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText"></div>
+    </div>
+
+    <div class="content">
+      <div class="screen show" id="intro">
+        <div class="intro">
+          <div class="intro-kicker">Organizational Diagnostic</div>
+          <h1 class="intro-title">
+            Should You Take<br>
+            <span class="highlight">This Job?</span>
+          </h1>
+          <p class="intro-subtitle">
+            6 moments from your first 90 days that reveal whether this org is actually ready for a Chief Storyteller
+          </p>
+          <button class="btn btn-full" id="startBtn">
+            Start Assessment
+          </button>
+        </div>
+      </div>
+
+      <div class="screen" id="questions">
+        <div class="question-stage" id="qStage"></div>
+        <div class="question-title" id="qTitle"></div>
+        <div class="question-text" id="qText"></div>
+        <div class="options" id="qOptions"></div>
+      </div>
+
+      <div class="screen" id="leadForm">
+        <form name="storyteller-assessment" method="POST" data-netlify="true" id="captureForm">
+          <input type="hidden" name="form-name" value="storyteller-assessment" />
+          <input type="hidden" name="result" id="hiddenResult" />
+          <input type="hidden" name="answers" id="hiddenAnswers" />
+          
+          <h2 class="form-title">Get Your Results</h2>
+          <p class="form-subtitle">
+            We'll send you a detailed breakdown of your organizational type plus guidance on what to do next.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-input" required id="formName">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" required id="formEmail">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input type="text" name="company" class="form-input" required id="formCompany">
+          </div>
+
+          <button type="submit" class="btn" style="width: 100%;">
+            See My Results
+          </button>
+        </form>
+      </div>
+
+      <div class="screen" id="results">
+        <div class="results">
+          <h2 class="result-title" id="rTitle"></h2>
+          <p class="result-subtitle" id="rSubtitle"></p>
+          <p class="result-description" id="rDescription"></p>
+          <div class="result-diagnosis" id="rDiagnosis"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      {
+        stage: "Day 1",
+        title: "The Welcome",
+        question: "Your new boss introduces you at the all-hands. How does she describe your role?",
+        options: [
+          { text: "They'll make sure our story gets told", score: 'producer' },
+          { text: "They'll help us show up in the conversations that matter", score: 'transitional' },
+          { text: "They're going to create content that drives pipeline", score: 'engine' }
+        ]
+      },
+      {
+        stage: "Week 2",
+        title: "The First Assignment",
+        question: "Marketing needs a thought leadership piece. What information do you have access to?",
+        options: [
+          { text: "Past blog posts and the company's messaging doc", score: 'producer' },
+          { text: "Customer interviews and sales call recordings", score: 'transitional' },
+          { text: "Real-time data on what topics are trending in your category", score: 'engine' }
+        ]
+      },
+      {
+        stage: "Month 1",
+        title: "The Earnings Call",
+        question: "The CEO mentions 'storytelling' to investors. You find out:",
+        options: [
+          { text: "By reading about it in the news", score: 'producer' },
+          { text: "In the comms team Slack after it happened", score: 'transitional' },
+          { text: "Because you helped prepare the talking points", score: 'engine' }
+        ]
+      },
+      {
+        stage: "Month 2",
+        title: "The Comment Thread",
+        question: "A practitioner at your company wants to weigh in on a hot industry debate on LinkedIn. What happens?",
+        options: [
+          { text: "They ask legal, who says no", score: 'producer' },
+          { text: "They DM you the draft, you polish it, they post", score: 'transitional' },
+          { text: "They just post it because they're empowered to have a POV", score: 'engine' }
+        ]
+      },
+      {
+        stage: "Month 3",
+        title: "The Board Deck",
+        question: "You're preparing the quarterly narrative. Success is measured by:",
+        options: [
+          { text: "Content volume metrics (posts, blogs, reach)", score: 'producer' },
+          { text: "Share of voice and brand mentions", score: 'transitional' },
+          { text: "Whether you moved the conversation on the topics that matter", score: 'engine' }
+        ]
+      },
+      {
+        stage: "Day 90",
+        title: "The Performance Review",
+        question: "Your boss evaluates your first 90 days. She focuses on:",
+        options: [
+          { text: "How many pieces you published and whether they hit deadlines", score: 'producer' },
+          { text: "Executive visibility and media placements you secured", score: 'transitional' },
+          { text: "Whether analysts and journalists now call you first", score: 'engine' }
+        ]
+      }
+    ];
+
+    const RESULTS = {
+      producer: {
+        title: "Content Producer",
+        subtitle: "You're running a content factory, not building market influence",
+        description: "Your org sees storytelling as a production function—output volume, hit deadlines, support sales. This role will burn you out or bore you to death. You'll write a lot, matter very little, and leave when you realize executive leadership has no idea what you actually do.",
+        diagnosis: "No authority. No intelligence. No infrastructure. No outcomes orientation.",
+        color: "#FF3D3D"
+      },
+      transitional: {
+        title: "Transitional State",
+        subtitle: "You're aware strategic influence matters, but not there yet",
+        description: "Your org intellectually understands thought leadership but hasn't committed to the patient, expensive work of building real credibility. You'll get some budget, some executive time, some latitude—but not enough. You'll produce better content than the Producer, but still lack the authority to say no to bad ideas or the resources to pursue great ones.",
+        diagnosis: "Partial authority. Incomplete intelligence. Inconsistent infrastructure. Confused outcomes.",
+        color: "#5533FF"
+      },
+      engine: {
+        title: "Credibility Engine",
+        subtitle: "You're positioned to build real market influence",
+        description: "Your org gets it: storytelling isn't about telling your story, it's about shaping market conversations. You have permission to be strategic, resources to be patient, and executive cover to ignore tactics that don't build long-term authority. This is the only version of this job worth taking.",
+        diagnosis: "Full authority. Real intelligence. Working infrastructure. Outcomes-driven.",
+        color: "#DFFF00"
+      }
+    };
+
+    let currentQ = 0;
+    let answers = [];
+
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('show'));
+      document.getElementById(screenId).classList.add('show');
+    }
+
+    function displayQuestion() {
+      const q = QUESTIONS[currentQ];
+      document.getElementById('qStage').textContent = q.stage;
+      document.getElementById('qTitle').textContent = q.title;
+      document.getElementById('qText').textContent = q.question;
+      
+      const optionsDiv = document.getElementById('qOptions');
+      optionsDiv.innerHTML = '';
+      
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt.text;
+        btn.onclick = () => selectAnswer(opt.score);
+        optionsDiv.appendChild(btn);
+      });
+      
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const percent = ((currentQ + 1) / QUESTIONS.length) * 100;
+      document.getElementById('progressFill').style.width = percent + '%';
+      document.getElementById('progressText').textContent = 
+        `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+    }
+
+    function selectAnswer(score) {
+      answers.push(score);
+      
+      if (currentQ < QUESTIONS.length - 1) {
+        currentQ++;
+        setTimeout(displayQuestion, 300);
+      } else {
+        setTimeout(() => {
+          const resultType = calculateResult();
+          document.getElementById('hiddenResult').value = resultType;
+          document.getElementById('hiddenAnswers').value = JSON.stringify(answers);
+          showScreen('leadForm');
+        }, 300);
+      }
+    }
+
+    function calculateResult() {
+      const counts = {
+        producer: answers.filter(s => s === 'producer').length,
+        transitional: answers.filter(s => s === 'transitional').length,
+        engine: answers.filter(s => s === 'engine').length
+      };
+      
+      return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    }
+
+    function displayResults() {
+      const resultType = calculateResult();
+      const result = RESULTS[resultType];
+      
+      document.getElementById('rTitle').textContent = result.title;
+      document.getElementById('rTitle').style.color = result.color;
+      document.getElementById('rSubtitle').textContent = result.subtitle;
+      document.getElementById('rDescription').textContent = result.description;
+      document.getElementById('rDiagnosis').textContent = result.diagnosis;
+      document.getElementById('rDiagnosis').style.borderColor = result.color;
+      
+      showScreen('results');
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      showScreen('questions');
+      document.getElementById('progress').classList.add('show');
+      displayQuestion();
+    });
+
+    document.getElementById('captureForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => displayResults())
+      .catch((error) => {
+        console.error('Form submission error:', error);
+        displayResults();
+      });
+    });
+  </script>
+</body>
+</html>
